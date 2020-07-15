@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collaborative Text Editor</title>
+    <meta name="description" content="Real-time collaborative text editor built with WebSockets">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📝</text></svg>">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <h1 class="title">
+                    <span class="icon">📝</span>
+                    Collaborative Text Editor
+                </h1>
+                <div class="status-bar">
+                    <div class="status online" id="connectionStatus">
+                        <span class="status-dot"></span>
+                        <span id="statusText">Connecting...</span>
+                    </div>
+                    <div class="user-count">
+                        <span class="icon">👥</span>
+                        <span id="userCount">0</span> users online
+                    </div>
+                </div>
+            </div>
+        </header>
+        
+        <main class="main">
+            <div class="editor-container">
+                <div class="editor-header">
+                    <div class="editor-info">
+                        <span class="document-title">Shared Document</span>
+                        <span class="save-indicator" id="saveIndicator">
+                            <span class="icon">💾</span>
+                            Auto-saved
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="editor-wrapper">
+                    <textarea 
+                        id="editor" 
+                        placeholder="Start typing... Your changes will sync in real-time with other users!"
+                        spellcheck="true"
+                    ></textarea>
+                </div>
+                
+                <div class="editor-footer">
+                    <div class="editor-stats">
+                        <span id="charCount">0 characters</span>
+                        <span id="wordCount">0 words</span>
+                        <span id="lineCount">1 line</span>
+                    </div>
+                    <div class="user-info">
+                        <span class="user-id">Your ID: <span id="userId">...</span></span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="sidebar">
+                <div class="activity-panel">
+                    <h3>💡 Tips</h3>
+                    <ul class="tips-list">
+                        <li>Changes sync automatically</li>
+                        <li>Open multiple tabs to test</li>
+                        <li>Share the URL with others</li>
+                        <li>Your cursor position is visible to others</li>
+                    </ul>
+                </div>
+                
+                <div class="activity-panel">
+                    <h3>🔧 Features</h3>
+                    <ul class="features-list">
+                        <li>✅ Real-time collaboration</li>
+                        <li>✅ Live user count</li>
+                        <li>✅ Cursor tracking</li>
+                        <li>✅ Auto-save</li>
+                        <li>✅ Rate limiting</li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+        
+        <footer class="footer">
+            <p>Built with ❤️ using Node.js, Socket.IO, and vanilla JavaScript</p>
+            <p>
+                <a href="https://github.com/mayur9210/collaborative-editor" target="_blank" rel="noopener">
+                    View on GitHub
+                </a>
+            </p>
+        </footer>
+    </div>
+
+    <!-- Toast notifications -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
